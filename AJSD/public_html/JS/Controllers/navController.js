@@ -5,7 +5,19 @@
  */
 
 var horizontalNav  = angular.module("horizontalNavigation",[]);
-horizontalNav.controller("hnavController",['$scope',function($scope){
-       $scope.ctrlName = "Horizontal Navigation";
-}]);
+horizontalNav.controller("HnavController",['$scope','$http',function($scope,$http){
+       //$scope.ctrlName = "Hello World!asdasdasd";
+       $http.get("JSON/navdata.json").success(function(data){
+          $scope.navObj = data;
+       });
+}]).directive('hnav', function() {
+  return {
+    templateUrl: 'templates/navigationDOM.html'
+  };
+}).directive('flyout', function() {
+  return {
+    templateUrl: 'templates/navigationDOMFlyout.html'
+  };
+});
+
 
